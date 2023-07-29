@@ -7,6 +7,7 @@ import useIsServer from "../hooks/useIsServer";
 import Knob from "../Knob";
 import Labels from "../Labels";
 import Svg from "../Svg";
+import MessageBox from "../MessageBox";
 
 const spreadDegrees = 360;
 const knobOffset = {
@@ -68,11 +69,12 @@ const CircularSlider = ({
         knobDraggable = true,
         progressColorFrom = '#80C3F3',
         progressColorTo = '#4990E2',
-        progressSize = 8,
+        progressSize = 22,
         trackColor = '#DDDEFB',
-        trackSize = 8,
+        trackSize = 22,
         trackDraggable = false,
         data = [],
+        checkpoints = [],
         dataIndex = 0,
         progressLineCap = 'round',
         renderLabelValue = null,
@@ -318,7 +320,14 @@ const CircularSlider = ({
     useEventListener(SLIDER_EVENT.UP, onMouseUp);
 
     const sanitizedLabel = label.replace(/[\W_]/g, "_");
-
+    if(checkpoints.length > 1 && state.label > checkpoints[0].value && state.label < checkpoints[1].value){
+        progressColorFrom = checkpoints[0].colorFrom
+        progressColorTo = checkpoints[0].colorTo
+    }
+    else if(checkpoints.length > 1 && state.label > checkpoints[1].value){
+        progressColorFrom = checkpoints[1].colorFrom
+        progressColorTo = checkpoints[1].colorTo
+    }
     return (
         <div style={{...styles.circularSlider, ...(state.mounted && styles.mounted)}} ref={circularSlider}>
             <Svg
@@ -337,6 +346,7 @@ const CircularSlider = ({
                 radiansOffset={state.radians}
                 onMouseDown={trackDraggable ? onMouseDown : null}
                 isDragging={state.isDragging}
+                checkpoints={checkpoints}
             />
             <Knob
                 isDragging={state.isDragging}
@@ -364,6 +374,13 @@ const CircularSlider = ({
                     value={`${state.label}`}
                 />
             )}
+            {checkpoints.length > 0 && checkpoints.map( cp => (
+                <MessageBox
+                    message={`${cp.key}: $${cp.value}`}
+                    messageFontSize="14px"
+                >
+                </MessageBox>
+            ))}
         </div>
     );
 };
@@ -395,6 +412,7 @@ CircularSlider.propTypes = {
     trackColor: PropTypes.string,
     trackSize: PropTypes.number,
     data: PropTypes.array,
+    checkpoints: PropTypes.array,
     dataIndex: PropTypes.number,
     onChange: PropTypes.func,
     isDragging: PropTypes.func

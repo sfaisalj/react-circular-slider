@@ -175,6 +175,7 @@ import { ReactComponent as EmojiIcon } from './assets/emoji.svg';
 					appendToValue='°'
 					valueFontSize='4rem'
 					trackColor="#eeeeee"
+					label='Alphabet'
 					trackDraggable={true}
 					continuous={{
 						enabled: true,
@@ -202,14 +203,37 @@ import { ReactComponent as EmojiIcon } from './assets/emoji.svg';
 			<br />
 			<hr />
 			<br />
-			<h3 className={styles.h3}>
+			<h2>Choose a Payment Amount</h2>
+			<h3 style={styles.h3}>
+				Make Payments by [Due Date]
+			</h3>
+			<div>
+				<CircularSlider
+				    min={0}
+					max={3600}
+					knobPosition='top'
+					prependToValue=' $'
+					label='Balance'
+					valueFontSize='3rem'
+					trackColor="#eeeeee"
+					progressColorFrom="#e82d07"
+					progressColorTo="#e86c07"
+					trackDraggable={true}
+					knobColor='#03fcdb'
+					checkpoints={[
+						{key: "Minimum Payment", value: 1200, colorFrom: '#fcc603', colorTo:'#c2fc03'},
+						{key: "No Interest", value: 2700, colorFrom: '#1cd68f', colorTo:'#1cd68f'} ,
+					  ]}
+				/>
+			</div>
+			{/* <h3 className={styles.h3}>
 				Please consider a small donation. Even one dollar will help to maintain and develop new features. Thanks!
 			</h3>
 			<form action="https://www.paypal.com/donate" method="post" target="_top">
 				<input type="hidden" name="hosted_button_id" value="GGLRKKGFPTXJW" />
 				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
 				<img alt="" border="0" src="https://www.paypal.com/en_DE/i/scr/pixel.gif" width="1" height="1" />
-			</form>
+			</form> */}
 		</div>
 	);
 };

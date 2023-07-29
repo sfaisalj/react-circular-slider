@@ -16,7 +16,8 @@ const Svg = ({
          radiansOffset,
          progressLineCap,
          onMouseDown,
-         isDragging
+         isDragging,
+         checkpoints
      }) => {
     const circleRef = useRef(null)
     const styles = ({
@@ -119,6 +120,7 @@ Svg.propTypes = {
     trackColor: PropTypes.string,
     trackSize: PropTypes.number,
     radiansOffset: PropTypes.number,
+    checkpoints: PropTypes.array
 };
 
 export default Svg;

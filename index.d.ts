@@ -1,6 +1,6 @@
 // Definitions by: Augusto Lopez <https://github.com/augustolopez>
 import React from 'react';
-declare module '@fseehawer/react-circular-slider' {
+declare module 'payment-slider' {
 
   interface Continuous {
     enabled: boolean;
@@ -37,6 +37,7 @@ declare module '@fseehawer/react-circular-slider' {
     trackSize?: number;
     trackDraggable?: boolean;
     data?: any[];
+    checkpoints?: any[];
     dataIndex?: number;
     onChange?: Function;
     children?: React.ReactNode;
