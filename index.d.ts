@@ -43,6 +43,7 @@ declare module 'payment-slider' {
     children?: React.ReactNode;
     isDragging?: Function;
     continuous?: Continuous;
+    setterPaymentAmount?: Function;
   }
 
   const CircularSlider: React.FC<CircularSliderProps>;

@@ -328,6 +328,7 @@ const CircularSlider = ({
         progressColorFrom = checkpoints[1].colorFrom
         progressColorTo = checkpoints[1].colorTo
     }
+    setterPaymentAmount(state.label);
     return (
         <div style={{...styles.circularSlider, ...(state.mounted && styles.mounted)}} ref={circularSlider}>
             <Svg
@@ -413,6 +414,7 @@ CircularSlider.propTypes = {
     trackSize: PropTypes.number,
     data: PropTypes.array,
     checkpoints: PropTypes.array,
+    setterPaymentAmount: PropTypes.func,
     dataIndex: PropTypes.number,
     onChange: PropTypes.func,
     isDragging: PropTypes.func
